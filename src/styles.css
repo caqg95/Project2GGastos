@@ -3,10 +3,6 @@
       padding: 60px 15px 0;
     }
 
-  html {
-    min-height: 100%;
-    position: relative;
-  }
   body {
     margin: 0;
     margin-bottom: 40px;
@@ -18,3 +14,5 @@
     height: 40px;
     color: white;
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
