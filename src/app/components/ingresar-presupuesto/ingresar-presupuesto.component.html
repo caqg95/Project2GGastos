@@ -1,0 +1,36 @@
+<div class="row mt-5">
+    <div class="col-lg-6 offset-lg-3">
+        <h1 mat-h1 class="text-center">Ingrese Presupuesto</h1>
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="presupuestoIncorrecto" class="text-center mb-3">
+                    <h3> <span class="badge bg-danger textError">El presupuesto debe ser mayor a 0</span></h3>
+                </div>
+                <mat-form-field class="wide-input">
+                    <input
+                        type="number"
+                        matInput
+                        [(ngModel)]="presupuesto"
+                        placeholder="Ingrese su presupuesto..."
+                        required
+                    />
+                </mat-form-field>
+                <button
+                        matInput
+                        mat-flat-button
+                        [ngStyle]="{
+                        'margin-top': '-5px',
+                        'margin-left': '1%',
+                        'padding': '28px',
+                        'width': '98%'
+                        }"
+                        color="accent"
+                        type="submit"
+                        (click)="agregarPregsupuesto()"
+                    >
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
