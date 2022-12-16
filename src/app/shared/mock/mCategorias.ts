@@ -1,6 +1,6 @@
 import { Categoria } from '../Categoria';
 
-export let categorias: Categoria[] = [
+export let Categorias: Categoria[] = [
     {
         id:1,
         nombre:'Vivienda'

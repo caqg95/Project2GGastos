@@ -1,22 +1,54 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {PresupuestoService} from '../../services/presupuesto.service'
+import {DivisaService} from '../../services/divisa.service'
+import { Divisa } from '../../shared/Divisa';
 @Component({
   selector: 'app-ingresar-presupuesto',
   templateUrl: './ingresar-presupuesto.component.html',
   styleUrls: ['./ingresar-presupuesto.component.css']
 })
-export class IngresarPresupuestoComponent {
- presupuesto:number;
- presupuestoIncorrecto:boolean;
+export class IngresarPresupuestoComponent implements OnInit {
+  divisas!: Divisa[] | undefined;
+  nombre:string;
+  nombreIncorrecto:boolean;
 
- constructor(){
-  this.presupuesto=0;
-  this.presupuestoIncorrecto=false;
- }
-//  ngOnit():void{
+  presupuesto:number;
+  presupuestoIncorrecto:boolean;
 
-//  }
-agregarPregsupuesto(){
-  this.presupuestoIncorrecto= this.presupuesto>0?false:true;
-}
+  divisa:string;
+  divisaIncorrecto:boolean;
+
+
+  constructor(private presupuestoService: PresupuestoService,
+              private divisaService: DivisaService,
+              private router:Router){
+
+    this.nombre=''
+    this.nombreIncorrecto=false;
+
+    this.presupuesto=0;
+    this.presupuestoIncorrecto=false;
+
+    this.divisa='$';
+    this.divisaIncorrecto=false;
+
+  }
+  ngOnInit(): void {
+    this.divisas = this.divisaService.get_divisas();
+  }
+
+  agregarPregsupuesto(){
+
+    console.log(this.divisa)
+    console.log(this.nombre)
+
+    this.nombreIncorrecto= this.nombre!==''?false:true;
+    this.presupuestoIncorrecto= this.presupuesto>0?false:true;
+    this.divisaIncorrecto= this.divisa!==''?false:true;
+    
+    if(this.presupuestoIncorrecto===false){
+
+    }
+  }
 }

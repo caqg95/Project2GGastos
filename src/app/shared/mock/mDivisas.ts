@@ -1,6 +1,6 @@
 import { Divisa } from '../Divisa';
 
-export let categorias: Divisa[] = [
+export let Divisas: Divisa[] = [
     {
         id:1,
         simbolo:'$',

@@ -1,7 +1,7 @@
 
 export interface Gasto {
-    id: number;
-    nombre: string;
+    id?: string;
+    nombre?: string;
     presupuesto: number;
     gastototal?: number;
     balance?: number;
@@ -10,7 +10,7 @@ export interface Gasto {
 }
 
 export interface GastoDetalle {
-    id: number;
+    id: string;
     nombre: string;
     categoria: string;
     monto:number;

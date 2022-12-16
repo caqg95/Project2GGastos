@@ -3,18 +3,50 @@
         <h1 mat-h1 class="text-center">Ingrese Presupuesto</h1>
         <div class="card">
             <div class="card-body">
-                <div *ngIf="presupuestoIncorrecto" class="text-center mb-3">
-                    <h3> <span class="badge bg-danger textError">El presupuesto debe ser mayor a 0</span></h3>
+
+                <div class="row">
+                    <mat-label>Proyecto:</mat-label>
+                    <mat-form-field class="wide-input">
+                        <input
+                            type="text"
+                            matInput
+                            [(ngModel)]="nombre"
+                            placeholder="Ingrese el nombre..."
+                            required
+                        />
+                    </mat-form-field>
+                    <div *ngIf="nombreIncorrecto" class="text-center mb-3">
+                        <h3> <span class="badge bg-danger textError">El nombre del proyecto es requerido</span></h3>
+                    </div>
                 </div>
-                <mat-form-field class="wide-input">
-                    <input
-                        type="number"
-                        matInput
-                        [(ngModel)]="presupuesto"
-                        placeholder="Ingrese su presupuesto..."
-                        required
-                    />
-                </mat-form-field>
+                <div class="row">
+                    <mat-label>Presupuesto:</mat-label>
+                    <mat-form-field class="wide-input">
+                        <input
+                            type="number"
+                            matInput
+                            [(ngModel)]="presupuesto"
+                            placeholder="Ingrese su presupuesto..."
+                            required
+                        />
+                    </mat-form-field>
+                    <div *ngIf="presupuestoIncorrecto" class="text-center mb-3">
+                        <h3> <span class="badge bg-danger textError">El presupuesto debe ser mayor a 0</span></h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <mat-label>Divisa:</mat-label>
+                    <mat-form-field class="wide-input">
+                        <select matNativeControl [(ngModel)]="divisa" placeholder="Seleccione una divisa" required>
+                            <option *ngFor="let divisa of divisas" value={{divisa.simbolo}}>{{divisa.nombre}}</option>
+                        </select>
+                    </mat-form-field>
+                    <div *ngIf="divisaIncorrecto" class="text-center mb-3">
+                        <h3> <span class="badge bg-danger textError">La divisa es requerida</span></h3>
+                    </div>
+                </div>
+                
                 <button
                         matInput
                         mat-flat-button
