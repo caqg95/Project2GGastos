@@ -1,8 +1,4 @@
-/* 
-	add netlify.toml file to the root directory of your project
-	and paste the following code in it
-*/
+# A basic redirects rule
 [[redirects]]
   from = "/*"
-  to = "/"
-  status = 200
+  to = "/index.html"
