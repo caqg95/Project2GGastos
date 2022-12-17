@@ -1,0 +1,8 @@
+/* 
+	add netlify.toml file to the root directory of your project
+	and paste the following code in it
+*/
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
