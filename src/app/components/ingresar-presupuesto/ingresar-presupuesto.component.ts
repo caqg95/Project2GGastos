@@ -47,8 +47,13 @@ export class IngresarPresupuestoComponent implements OnInit {
     this.presupuestoIncorrecto= this.presupuesto>0?false:true;
     this.divisaIncorrecto= this.divisa!==''?false:true;
     
-    if(this.presupuestoIncorrecto===false){
-
+    if(this.presupuestoIncorrecto===false && this.nombreIncorrecto===false && this.divisaIncorrecto===false){
+      this.presupuestoService.presupuesto={
+        nombre:this.nombre,
+        presupuesto:this.presupuesto,
+        divisa:this.divisa
+      };
+      this.router.navigate(['/gastos'])
     }
   }
 }

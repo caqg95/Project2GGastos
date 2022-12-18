@@ -9,6 +9,7 @@ export class PresupuestoService {
   presupuesto:Gasto;
   constructor() { 
     this.presupuesto={
+      nombre:'',
       presupuesto:0,
       balance:0
     };
