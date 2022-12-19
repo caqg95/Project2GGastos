@@ -39,10 +39,7 @@ export class IngresarPresupuestoComponent implements OnInit {
   }
 
   agregarPregsupuesto(){
-
-    console.log(this.divisa)
-    console.log(this.nombre)
-
+    
     this.nombreIncorrecto= this.nombre!==''?false:true;
     this.presupuestoIncorrecto= this.presupuesto>0?false:true;
     this.divisaIncorrecto= this.divisa!==''?false:true;
@@ -51,7 +48,9 @@ export class IngresarPresupuestoComponent implements OnInit {
       this.presupuestoService.presupuesto={
         nombre:this.nombre,
         presupuesto:this.presupuesto,
-        divisa:this.divisa
+        divisa:this.divisa,
+        gastototal:0,
+        balance:0
       };
       this.router.navigate(['/gastos'])
     }

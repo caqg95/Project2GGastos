@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -15,8 +15,12 @@ import { FooterComponent } from './components/Layout/footer/footer.component';
 import { AboutComponent } from './components/Layout/about/about.component';
 import {IngresarPresupuestoComponent} from './components/ingresar-presupuesto/ingresar-presupuesto.component';
 import {GastosComponent} from './components/gastos/gastos.component';
+import {IngresarGastoComponent} from './components/gastos/ingresar-gasto/ingresar-gasto.component';
+import {ListarGastoComponent} from './components/gastos/listar-gasto/listar-gasto.component';
+import {GastodetalleComponent} from './components/gastos/gastodetalle/gastodetalle.component';
 import {DivisasComponent} from './components/divisas/divisas.component';
 import {CategoriasComponent} from './components/categorias/categorias.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 const appRoutes: Routes = [
@@ -39,6 +43,9 @@ const appRoutes: Routes = [
     GastosComponent,
     DivisasComponent,
     CategoriasComponent,
+    IngresarGastoComponent,
+    ListarGastoComponent,
+    GastodetalleComponent,
     AboutComponent
   ],
   imports: [
@@ -48,7 +55,13 @@ const appRoutes: Routes = [
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   exports:[
     MaterialModule

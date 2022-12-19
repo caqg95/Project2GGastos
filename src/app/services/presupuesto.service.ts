@@ -11,7 +11,8 @@ export class PresupuestoService {
     this.presupuesto={
       nombre:'',
       presupuesto:0,
-      balance:0
+      balance:0,
+      gastototal:0,
     };
   }
 }

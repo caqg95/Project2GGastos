@@ -1,1 +1,51 @@
-<p>listar-gasto works!</p>
+<div class="mt-1">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Categoria</th>
+                        <th scope="col" class="text-center">Monto</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="align-middle text-center">Cemento</td>
+                        <td class="align-middle text-center">Otros</td>
+                        <td class="align-middle text-center">C$ 100</td>
+                        <td class="align-middle text-center">
+                            <button
+                                matInput
+                                mat-flat-button
+                                [ngStyle]="{
+                                'padding': '28px',
+                                'width': '25%'
+                                }"
+                                color="accent"
+                                type="submit"
+                            >
+                            Editar
+                            </button> | 
+                            <button
+                                    matInput
+                                    mat-flat-button
+                                    [ngStyle]="{
+                                    'padding': '28px',
+                                    'width': '25%'
+                                    }"
+                                    color="warn"
+                                    type="submit"
+                                >
+                                Eliminar
+                            </button>
+                        </td>
+                     </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
