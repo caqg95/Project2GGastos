@@ -45,6 +45,7 @@ export class IngresarGastoComponent implements OnInit {
     }
     if(this.nombre==='' || this.categoria==='' || this.monto<=0){
       this.formularioIncorrecto=true;
+      this.textIncorrecto='Todo los campos son requeridos y el monto debe de ser mayor a 0';
     }
     else{
       this.formularioIncorrecto=false;

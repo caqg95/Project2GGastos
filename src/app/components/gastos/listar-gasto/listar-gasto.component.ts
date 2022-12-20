@@ -1,7 +1,6 @@
 import { Component, Input, } from "@angular/core";
-import { PresupuestoService } from "src/app/services/presupuesto.service";
 import { Gasto,GastoDetalle } from '../../../shared/Gasto';
-import { v4 as uuidv4 } from 'uuid';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-listar-gasto',
@@ -12,18 +11,26 @@ export class ListarGastoComponent {
   @Input() presupuesto!: Gasto|undefined;
   @Input() gastodetalle!: GastoDetalle;
 
+  gastoDetailDelete!:GastoDetalle;
+  gastoIndexDetailDelete!:number;
   monto!:number;
   nombre!:string;
   categoria!:string;
 
-  constructor(){
+  constructor(private modalService: NgbModal) {
   }
 
-  actualizaBalance(monto:number){
-    this.presupuesto!.balance=this.presupuesto!.balance + monto;
-    this.presupuesto!.gastototal=this.presupuesto!.gastototal - monto;    
+  eliminarGasto(){
+    this.presupuesto?.gastodetalle?.splice(this.gastoIndexDetailDelete,1)
+    this.presupuesto!.balance=this.presupuesto!.balance + this.gastoDetailDelete.monto;
+    this.presupuesto!.gastototal=this.presupuesto!.gastototal - this.gastoDetailDelete.monto;    
   }
 
+  public open(modal: any,gastoDelete:GastoDetalle,index:number): void {
+    this.gastoDetailDelete=gastoDelete;
+    this.gastoIndexDetailDelete=index;
+    this.modalService.open(modal);
+  }
 
 }
 
