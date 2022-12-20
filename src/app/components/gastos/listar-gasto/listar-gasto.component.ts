@@ -1,5 +1,6 @@
 import { Component,Input } from '@angular/core';
 import { Gasto } from '../../../shared/Gasto';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-listar-gasto',
@@ -8,4 +9,12 @@ import { Gasto } from '../../../shared/Gasto';
 })
 export class ListarGastoComponent {
   @Input() presupuesto!: Gasto|undefined;
+
+  constructor(
+    private modalService: NgbModal,){
+
+}
+  public open(modal: any): void {
+    this.modalService.open(modal);
+  }
 }

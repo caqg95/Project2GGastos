@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {PresupuestoService} from '../../services/presupuesto.service'
 import { Gasto } from '../../shared/Gasto';
+
 @Component({
   selector: 'app-gastos',
   templateUrl: './gastos.component.html',
@@ -20,4 +21,5 @@ export class GastosComponent implements OnInit {
     this.presupuesto=this.presupuestoService.get_presupuesto(this.id_presupuesto);
     console.log("🚀 ~ file: gastos.component.ts:17 ~ GastosComponent ~ ngOnInit ~  this.presupuesto",  this.presupuesto)
   }
+
 }
