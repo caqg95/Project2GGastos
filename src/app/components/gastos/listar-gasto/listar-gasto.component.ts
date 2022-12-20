@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
+import { Gasto } from '../../../shared/Gasto';
 
 @Component({
   selector: 'app-listar-gasto',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./listar-gasto.component.css']
 })
 export class ListarGastoComponent {
-
+  @Input() presupuesto!: Gasto|undefined;
 }

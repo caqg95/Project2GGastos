@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
+
 import {PresupuestoService} from '../../services/presupuesto.service'
 import {DivisaService} from '../../services/divisa.service'
 import { Divisa } from '../../shared/Divisa';
+import { Gasto, GastoDetalle } from '../../shared/Gasto';
 @Component({
   selector: 'app-ingresar-presupuesto',
   templateUrl: './ingresar-presupuesto.component.html',
@@ -45,14 +48,18 @@ export class IngresarPresupuestoComponent implements OnInit {
     this.divisaIncorrecto= this.divisa!==''?false:true;
     
     if(this.presupuestoIncorrecto===false && this.nombreIncorrecto===false && this.divisaIncorrecto===false){
-      this.presupuestoService.presupuesto={
+    
+      let presupuestoSave:Gasto={
+        id:uuidv4(),
         nombre:this.nombre,
         presupuesto:this.presupuesto,
         divisa:this.divisa,
         gastototal:0,
-        balance:0
+        balance:this.presupuesto,
+        gastodetalle:[]
       };
-      this.router.navigate(['/gastos'])
+      this.presupuestoService.agregarGasto(presupuestoSave);
+      this.router.navigate(['/gastos/'+ presupuestoSave.id])
     }
   }
 }

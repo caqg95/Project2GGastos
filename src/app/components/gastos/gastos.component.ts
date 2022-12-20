@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {PresupuestoService} from '../../services/presupuesto.service'
 import { Gasto } from '../../shared/Gasto';
 @Component({
@@ -7,13 +8,16 @@ import { Gasto } from '../../shared/Gasto';
   styleUrls: ['./gastos.component.css']
 })
 export class GastosComponent implements OnInit {
-  presupuesto!:Gasto;
-  constructor(private presupuestoService: PresupuestoService){
+  presupuesto!:Gasto|undefined;
+  id_presupuesto!:string;
+
+  constructor(private presupuestoService: PresupuestoService,
+              private activatedRoute: ActivatedRoute){
 
   }
-
   ngOnInit(): void {
-    this.presupuesto=this.presupuestoService.presupuesto;
-    console.log( this.presupuesto);
+    this.id_presupuesto = String(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.presupuesto=this.presupuestoService.get_presupuesto(this.id_presupuesto);
+    console.log("🚀 ~ file: gastos.component.ts:17 ~ GastosComponent ~ ngOnInit ~  this.presupuesto",  this.presupuesto)
   }
 }

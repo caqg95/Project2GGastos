@@ -3,8 +3,8 @@ export interface Gasto {
     id?: string;
     nombre?: string;
     presupuesto: number;
-    gastototal?: number;
-    balance?: number;
+    gastototal: number;
+    balance: number;
     divisa?: string;
     gastodetalle?:GastoDetalle[]
 }
@@ -12,6 +12,6 @@ export interface Gasto {
 export interface GastoDetalle {
     id: string;
     nombre: string;
-    categoria: string;
+    categoria?: string;
     monto:number;
 }

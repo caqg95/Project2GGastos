@@ -1,8 +1,8 @@
 <div class="row mt-4">
     <div class="col-lg-8 offset-lg-2 text-center">
-        <h1 mat-h1 class="Text-center">PRESUPUESTO: {{this.presupuesto.nombre}}</h1>
+        <h1 mat-h1 class="Text-center">PRESUPUESTO: {{this.presupuesto!.nombre}}</h1>
     </div>
 </div>
-<app-ingresar-gasto></app-ingresar-gasto>
-<app-listar-gasto></app-listar-gasto>
-<app-gastodetalle></app-gastodetalle>
+<app-ingresar-gasto [presupuesto]="presupuesto"></app-ingresar-gasto>
+<app-listar-gasto [presupuesto]="presupuesto"></app-listar-gasto>
+<app-gastodetalle [presupuesto]="presupuesto"></app-gastodetalle>

@@ -26,7 +26,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 const appRoutes: Routes = [
   { path: '', redirectTo:'/ingresarPresupuesto',pathMatch:'full' },
   { path: 'ingresarPresupuesto', component: IngresarPresupuestoComponent },
-  { path: 'gastos', component: GastosComponent },
+  { path: 'gastos/:id', component: GastosComponent },
   { path: 'divisas', component: DivisasComponent },
   { path: 'categorias', component: CategoriasComponent },
   { path: 'acerca', component: AboutComponent },
