@@ -12,7 +12,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr id={{gasto.id}} *ngFor="let gasto of presupuesto?.gastodetalle">
+                        <tr id={{gasto.id}} *ngFor="let gasto of presupuesto?.gastodetalle; let i = index">
                             <td class="align-middle text-center">{{gasto.nombre}}</td>
                             <td class="align-middle text-center">{{gasto.categoria}}</td>
                             <td class="align-middle text-center">{{presupuesto!.divisa}} {{gasto.monto}}</td>
@@ -38,6 +38,7 @@
                                         }"
                                         color="warn"
                                         type="submit"
+                                        (click)="presupuesto?.gastodetalle?.splice(i,1); actualizaBalance(gasto.monto)"
                                     >
                                     Eliminar
                                 </button>
