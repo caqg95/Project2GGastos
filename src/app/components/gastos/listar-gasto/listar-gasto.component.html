@@ -1,67 +1,203 @@
 <div class="mt-1">
-    <div class="col-lg-8 offset-lg-2">
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col" class="text-center">Nombre</th>
-                            <th scope="col" class="text-center">Categoria</th>
-                            <th scope="col" class="text-center">Monto</th>
-                            <th scope="col" class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id={{gasto.id}} *ngFor="let gasto of presupuesto?.gastodetalle; let i = index">
-                            <td class="align-middle text-center">{{gasto.nombre}}</td>
-                            <td class="align-middle text-center">{{gasto.categoria}}</td>
-                            <td class="align-middle text-center">{{presupuesto!.divisa}} {{gasto.monto}}</td>
-                            <td class="align-middle text-center">
-                                <button
-                                    matInput
-                                    mat-flat-button
-                                    [ngStyle]="{
-                                    'padding': '28px',
-                                    'width': '25%'
-                                    }"
-                                    color="accent"
-                                    type="submit"
-                                >
-                                Editar
-                                </button> | 
-                                <button
-                                        matInput
-                                        mat-flat-button
-                                        [ngStyle]="{
-                                        'padding': '28px',
-                                        'width': '25%'
-                                        }"
-                                        color="warn"
-                                        type="submit"
-                                        (click)="open(demoModal,gasto,i)"
-                                    >
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="col-lg-8 offset-lg-2">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" class="text-center">Nombre</th>
+              <th scope="col" class="text-center">Categoria</th>
+              <th scope="col" class="text-center">Monto</th>
+              <th scope="col" class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              id="{{ gasto.id }}"
+              *ngFor="let gasto of presupuesto?.gastodetalle; let i = index"
+            >
+              <td class="align-middle text-center">{{ gasto.nombre }}</td>
+              <td class="align-middle text-center">{{ gasto.categoria }}</td>
+              <td class="align-middle text-center">
+                {{ presupuesto!.divisa }} {{ gasto.monto }}
+              </td>
+              <td class="align-middle text-center">
+                <button
+                  matInput
+                  mat-flat-button
+                  [ngStyle]="{
+                    padding: '28px',
+                    width: '25%'
+                  }"
+                  color="accent"
+                  type="submit"
+                  (click)="openEdicion(demoModalEditar, gasto, i)"
+                >
+                  Editar
+                </button>
+                |
+                <button
+                  matInput
+                  mat-flat-button
+                  [ngStyle]="{
+                    padding: '28px',
+                    width: '25%'
+                  }"
+                  color="warn"
+                  type="submit"
+                  (click)="open(demoModal, gasto, i)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>
+
+<ng-template #demoModalEditar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edición de gasto</h4>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="row">
+                <mat-label>Nombre:</mat-label>
+                <mat-form-field class="wide-input">
+                  <input
+                    type="text"
+                    matInput
+                    placeholder="Ingrese el nombre..."
+                    required
+                    value="{{ gastoDetailEditar.nombre }}"
+                    #gastoNombreEditar
+                  />
+                </mat-form-field>
+                <!-- <div *ngIf="nombreIncorrecto" class="text-center mb-3">
+                                    <h3> <span class="badge bg-danger textError">El nombre del proyecto es requerido</span></h3>
+                                </div> -->
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="row">
+                <mat-label>Categoria:</mat-label>
+                <mat-form-field class="wide-input">
+                  <select
+                    matNativeControl
+                    placeholder="Seleccione una categoria..."
+                    required
+                    #gastoCategoriaEditar
+                    value="{{ gastoDetailEditar.categoria }}"
+                  >
+                    <option
+                      *ngFor="let categoria of categorias"
+                      value="{{ categoria.id }}"
+                    >
+                      {{ categoria.nombre }}
+                    </option>
+                  </select>
+                </mat-form-field>
+                <!-- <div *ngIf="nombreIncorrecto" class="text-center mb-3">
+                                    <h3> <span class="badge bg-danger textError">El nombre del proyecto es requerido</span></h3>
+                                </div> -->
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="row">
+                <mat-label>Monto:</mat-label>
+                <mat-form-field class="wide-input">
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="Ingrese el monto..."
+                    required
+                    value="{{ gastoDetailEditar.monto }}"
+                    #gastoMontoEditar
+                  />
+                </mat-form-field>
+                <!-- <div *ngIf="nombreIncorrecto" class="text-center mb-3">
+                                    <h3> <span class="badge bg-danger textError">El nombre del proyecto es requerido</span></h3>
+                                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="
+        gastoDetailMontoAntiguo = gastoDetailEditar.monto;
+        gastoDetailEditar.nombre = gastoNombreEditar.value;
+        gastoDetailEditar.categoria = gastoCategoriaEditar.value;
+        gastoDetailEditar.monto = gastoMontoEditar.valueAsNumber;
+        editarGasto();
+        modal.close('Save click')
+      "
+    >
+      Editar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-info"
+      (click)="modal.close('Save click')"
+    >
+      Cancelar
+    </button>
+  </div>
+</ng-template>
 
 <!-- (click)="presupuesto?.gastodetalle?.splice(i,1); actualizaBalance(gasto.monto)" -->
 <ng-template #demoModal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Eliminacion De Gasto</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Eliminacion De Gasto</h4>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="col-lg-12">
+      <h3 mat-h1 class="alert alert-danger text-center">
+        Esta seguro que desea elimanar el gasto
+        <strong class="text-danger">{{ gastoDetailDelete.nombre }} ?</strong>
+      </h3>
     </div>
-    <div class="modal-body">
-        <div class="col-lg-12"> <h3 mat-h1 class="alert alert-danger  text-center">Esta seguro que desea  elimanar el gasto <strong class="text-danger">{{gastoDetailDelete.nombre}} ?</strong></h3>  </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" (click)="eliminarGasto();modal.close('Save click')">Eliminar</button>
-        <button type="button" class="btn btn-outline-info" (click)="modal.close('Save click')">Cancelar</button>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="eliminarGasto(); modal.close('Save click')"
+    >
+      Eliminar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-info"
+      (click)="modal.close('Save click')"
+    >
+      Cancelar
+    </button>
+  </div>
 </ng-template>
