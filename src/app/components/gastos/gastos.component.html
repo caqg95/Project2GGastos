@@ -1,3 +1,16 @@
+
+<div class="mt-4">
+    <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="row m-0">
+                <div class="col-lg-6">
+                        <button class="btn btn-warning btn-size" type="submit" (click)="openEdicionPresupuesto(demoModal)">Editar Presupuesto</button>
+                </div>
+                <div class="col-lg-6">
+                    <button  class="btn btn-success btn-size" type="submit" (click)="reiniciarPresupuesto()">Reinicar</button>
+                </div>
+            </div>
+    </div>
+</div>
 <div class=" mt-4">
     <div class="col-lg-8 offset-lg-2 text-center">
         <h1 mat-h1 class="Text-center">PRESUPUESTO: {{this.presupuesto!.nombre}}</h1>
@@ -6,3 +19,91 @@
 <app-ingresar-gasto [presupuesto]="presupuesto"></app-ingresar-gasto>
 <app-listar-gasto [presupuesto]="presupuesto"></app-listar-gasto>
 <app-gastodetalle [presupuesto]="presupuesto"></app-gastodetalle>
+
+<ng-template #demoModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Editar presupuesto de: <strong class="text-danger">{{presupuesto!.nombre}}</strong></h4>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <mat-label>Proyecto:</mat-label>
+                    <mat-form-field class="wide-input">
+                        <input
+                            type="text"
+                            matInput
+                            #presupuestoNombreEditar
+                            value="{{presupuesto!.nombre}}"
+                            placeholder="Ingrese el nombre..."
+                            required
+                        />
+                    </mat-form-field>
+                    <!-- <div *ngIf="nombreIncorrecto" class="text-center mb-3">
+                        <h3> <span class="badge bg-danger textError">El nombre del proyecto es requerido</span></h3>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <mat-label>Presupuesto:</mat-label>
+                    <mat-form-field class="wide-input">
+                        <input
+                            type="number"
+                            matInput
+                            #presupuestoMontoEditar
+                            value="{{presupuesto!.presupuesto}}"
+                            placeholder="Ingrese su presupuesto..."
+                            required
+                        />
+                    </mat-form-field>
+                    <!-- <div *ngIf="presupuestoIncorrecto" class="text-center mb-3">
+                        <h3> <span class="badge bg-danger textError">El presupuesto debe ser mayor a 0</span></h3>
+                    </div> -->
+                </div>
+
+                <div class="row">
+                    <mat-label>Divisa:</mat-label>
+                    <mat-form-field class="wide-input">
+                        <select matNativeControl   #presupuestoDivisa placeholder="Seleccione una divisa"  required>
+                            <option  *ngFor="let divisa of divisas" value={{divisa.simbolo}}>{{divisa.nombre}}</option>
+                        </select>
+                    </mat-form-field>
+                    <!-- <div *ngIf="divisaIncorrecto" class="text-center mb-3">
+                        <h3> <span class="badge bg-danger textError">La divisa es requerida</span></h3>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="
+            this.presupuesto!.nombre = presupuestoNombreEditar.value;
+            this.presupuesto!.presupuesto = presupuestoMontoEditar.valueAsNumber;
+            this.presupuesto!.balance = presupuestoMontoEditar.valueAsNumber;
+            this.presupuesto!.divisa = presupuestoDivisa.value;
+            editarPresupuesto();
+            modal.close('Save click')
+        "
+        >
+            Editar
+        </button>
+        <button
+            type="button"
+            class="btn btn-outline-info"
+            (click)="modal.close('Save click')"
+        >
+            Cancelar
+        </button>
+    </div>
+</ng-template>
